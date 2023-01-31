@@ -101,7 +101,6 @@ export default defineComponent({
     methods: {
         downloadInvoice() {
             html2pdf(document.getElementById("invoice-template"), {
-                margin: 1,
                 filename: "Invoice.pdf",
             })
         }
@@ -275,66 +274,148 @@ export default defineComponent({
                 </div>
             </Dialog>
         </div>
-        <div ref="document" class="">
-            <div id="invoice-template" class="invoice-box p-5">
-                <table cellpadding="0" cellspacing="0">
-                    <tr class="top">
-                        <td colspan="2">
-                            <table>
-                                <tr>
-                                    <td class="title">
-                                        <img src="../assets/logo.svg"
-                                            style="width: 100%; max-width: 100px" />
-                                    </td>
+    </main>
 
-                                    <td>
-                                        <span class="text-4xl bg-gray-200 px-20 py-3 font-bold tracking-wider">INVOICE</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+    <div class="hidden">
+        <div id="invoice-template" class="my-4 mx-2 p-5 bg-white">
+        <div class="flex">
+            <div class="w-2/3">
+                <div class="w-48">
+                    <img class="h-[48px]" src="/upworklogo.png" />
+                </div>
+                <div class="flex mb-4 text-sm">
+                    <span class="mr-4 font-bold">From:</span>
+                    <div class="text-base">
+                        Upwork Global Inc.<br />
+                        475 Brannan St., Suite 430<br />
+                        San Francisco, CA 94107<br />
+                        USA
+                    </div>
+                </div>
+                <div class="flex text-sm">
+                    <span class="mr-4 font-bold">Bill to:</span>
+                    <div class="text-base">
+                        Attn: Jiancong Xie<br />
+                        Business Name:<br />
+                        Songyuxili Building #56, Unit #4, Room #201<br />
+                        松榆西里56号楼4单元201<br />
+                        Chaoyang District 朝阳区, 100010<br />
+                        China<br />
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/3">
+                <div class="flex h-[48px] bg-gray-300 justify-center">
+                    <span class="mt-1 font-semibold">INVOICE</span>
+                </div>
 
-                    <tr class="information">
-                        <td colspan="2">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Sparksuite, Inc.<br />
-                                        12345 Sunny Road<br />
-                                        Sunnyville, CA 12345
-                                    </td>
-
-                                    <td>
-                                        Acme Corp.<br />
-                                        John Doe<br />
-                                        john@example.com
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-
-                    <tr class="heading">
-                        <td>DESCRIPTION / MEMO</td>
-
-                        <td>AMOUNT</td>
-                    </tr>
-
-                    <tr class="item">
-                        <td>{{ transactionDetailInfo.description }}</td>
-
-                        <td>{{ transactionDetailInfo.balance }}</td>
-                    </tr>
-
-                    <tr class="item last">
-                        <td>TOTAL AMOUNT:</td>
-
-                        <td>{{ transactionDetailInfo.balance }}</td>
-                    </tr>
-                </table>
+                <div class="m-4 text-sm">
+                    <ul>
+                        <li class="flex">
+                            <span class="w-1/2 text-left">INVOICE #</span>
+                            <span class="w-1/2 text-right">T543219076</span>
+                        </li>
+                        <li class="flex">
+                            <span class="w-1/2 text-left">DATE</span>
+                            <span class="w-1/2 text-right">Dec 29, 2022</span>
+                        </li>
+                        <li class="flex font-bold">
+                            <span class="w-1/2 text-left">DUE DATE</span>
+                            <span class="w-1/2 text-right">Jan 3, 2023</span>
+                        </li>
+                        <li class="flex">
+                            <span class="w-1/2 text-left">TOTAL AMOUNT</span>
+                            <span class="w-1/2 text-right">$0.10</span>
+                        </li>
+                        <li class="flex font-bold">
+                            <span class="w-1/2 text-left">TOTAL DUE</span>
+                            <span class="w-1/2 text-right">$0.10</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </main>
+        <div class="my-4 text-sm">
+            <table class="w-full border-collapse border border-slate-400">
+                <thead class="font-bold">
+                    <tr>
+                        <td class="px-2 pb-4 border border-gray-800 bg-gray-300"><p>DESCRIPTION / MEMO</p></td>
+                        <td class="px-2 pb-4 border border-gray-800 text-right bg-gray-300"><p>AMOUNT</p></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-2 pb-4 border border-gray-800">
+                            {{ transactionDetailInfo.description }}
+                        </td>
+                        <td class="px-2 pb-4 border border-gray-800 text-right">{{ transactionDetailInfo.balance }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 pb-4 border border-gray-800">TOTAL AMOUNT:</td>
+                        <td class="px-2 pb-4 border border-gray-800 text-right">{{ transactionDetailInfo.balance }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
 </template>
+
+
+<!-- <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+        <td colspan="2">
+            <table>
+                <tr>
+                    <td class="title">
+                        <img src="../assets/logo.svg" style="width: 100%; max-width: 100px" />
+                    </td>
+
+                    <td>
+                        <span
+                            class="text-4xl bg-gray-200 px-20 py-3 font-bold tracking-wider">INVOICE</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr class="information">
+        <td colspan="2">
+            <table>
+                <tr>
+                    <td>
+                        Sparksuite, Inc.<br />
+                        12345 Sunny Road<br />
+                        Sunnyville, CA 12345
+                    </td>
+
+                    <td>
+                        Acme Corp.<br />
+                        John Doe<br />
+                        john@example.com
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+    <tr class="heading">
+        <td>DESCRIPTION / MEMO</td>
+
+        <td>AMOUNT</td>
+    </tr>
+
+    <tr class="item">
+        <td>{{ transactionDetailInfo.description }}</td>
+
+        <td>{{ transactionDetailInfo.balance }}</td>
+    </tr>
+
+    <tr class="item last">
+        <td>TOTAL AMOUNT:</td>
+
+        <td>{{ transactionDetailInfo.balance }}</td>
+    </tr>
+</table> -->
